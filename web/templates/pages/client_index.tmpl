@@ -1,0 +1,33 @@
+{{ define "pages/client_index.tmpl" }}
+{{ template "partials/header.tmpl" . }}
+
+<div class="gsync-main-container w-full box-border">
+  <div class="nav">
+    <div>
+      <h1>Gsync Server</h1>
+    </div>
+    <div>
+      <button class="buttonOrange">Change Role</button>
+    </div>
+  </div>
+  <div class="filebrowser" x-data="{}">
+    <table class="table-fixed border border-sumiInk3 border-collapse w-full">
+      <thead>
+        <tr>
+          <th class="border border-sumiInk3 bg-sumiInk2 p-2 w-10">
+            <input
+              type="checkbox"
+              class="accent-lightBlue cursor-pointer border-2 border-dragonBlue"
+              @click="$el.closest('table').querySelectorAll('[id^=item_]').forEach(el => el.closest('tr').classList.toggle('fileSelected', $el.checked))"
+            />
+          </th>
+          <th class="border border-sumiInk3 bg-sumiInk2 p-2">Name</th>
+          <th class="border border-sumiInk3 bg-sumiInk2 p-2 w-20">Size</th>
+        </tr>
+      </thead>
+      <tbody hx-get="/partial/filelist" hx-trigger="load"></tbody>
+    </table>
+  </div>
+  {{ template "partials/footer.tmpl" . }}
+</div>
+{{ end }}

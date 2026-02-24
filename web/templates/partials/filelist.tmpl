@@ -1,0 +1,25 @@
+{{ define "partials/filelist.tmpl" }}
+  {{ if .error }}
+    <tr>
+      <td class="border border-sumiInk3 p-1 text-vsm text-center text-waveRed" colspan="3">
+        {{ .error }}
+      </td>
+    </tr>
+  {{ end }}
+  {{ range .fileList }}
+    <tr
+      class="hover:bg-dragonBlue/50 hover:text-gokkoWhite hover:font-bold cursor-pointer"
+      id="item_{{ .Id }}"
+      @click="cingil($el)">
+      <input
+        type="checkbox"
+        id="select_{{ .Id }}"
+        name="select_{{ .Id }}"
+        value="1"
+        class="accent-lightBlue hidden"
+      />
+      <td class="border border-sumiInk3 p-1 text-vsm" colspan="2">{{ .RelPath }}</td>
+      <td class="border border-sumiInk3 p-1 text-vsm text-right">{{ .Size }}</td>
+    </tr>
+  {{ end }}
+{{ end }}
